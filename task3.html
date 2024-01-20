@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("https://cdn.hswstatic.com/gif/celsius-convert.jpg");
+      background-size: cover;
+      height:100vh;
+    }
+    h1 {
+      text-align: center;
+    }
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      border:8px solid rgb(238, 155, 2);
+      border-radius:8px;
+      padding:10px;
+      margin-top:25px;
+    }
+    label {
+      display: block;
+      margin-bottom: 16px;
+      margin-top:10px;
+      
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      margin-top:10px;
+      cursor: pointer;
+    }
+    
+    .result {
+      background-color: #f0f0f0;
+      padding: 10px;
+      color:#a1158f;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    <label for="input">Input Value:</label>
+    <input type="number" id="input" placeholder="Enter value" />
+    <label for="from">From:</label>
+    <select id="from">
+      <option value="c">Celsius</option>
+      <option value="f">Fahrenheit</option>
+      <option value="k">Kelvin</option>
+    </select>
+    <label for="to">To:</label>
+    <select id="to">
+      <option value="c">Celsius</option>
+      <option value="f">Fahrenheit</option>
+      <option value="k">Kelvin</option>
+    </select>
+    <button onclick="convert()">Convert</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function convert() {
+      var inputValue = document.getElementById("input").value;
+      var fromUnit = document.getElementById("from").value;
+      var toUnit = document.getElementById("to").value;
+      var result = 0;
+    if(inputValue==""){
+        alert("Please Enter a Valid number");
+    }
+    else{
+      if (fromUnit === toUnit) {
+        result = inputValue;
+      } else if (fromUnit === "c" && toUnit === "f") {
+        result = (inputValue * 9 / 5) + 32;
+      } else if (fromUnit === "c" && toUnit === "k") {
+        result = parseFloat(inputValue) + 273.15;
+      } else if (fromUnit === "f" && toUnit === "c") {
+        result = (inputValue - 32) * 5 / 9;
+      } else if (fromUnit === "f" && toUnit === "k") {
+        result = (inputValue - 32) * 5 / 9 + 273.15;
+      } else if (fromUnit === "k" && toUnit === "c") {
+        result = inputValue - 273.15;
+      } else if (fromUnit === "k" && toUnit === "f") {
+        result = (inputValue - 273.15) * 9 / 5 + 32;
+      }
+    }
+    
+      // Add more conversion conditions here for other units
+
+      document.getElementById("result").textContent = result;
+    }
+  </script>
+</body>
+</html>
